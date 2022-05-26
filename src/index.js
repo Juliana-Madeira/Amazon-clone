@@ -4,6 +4,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import reducer, { initialState } from './reducer';
+import { StateProvider } from './components/StateProvider';
 
 
 const rootElement = document.getElementById('root')
@@ -11,7 +13,9 @@ const root = createRoot(rootElement)
 
 root.render(
   <React.StrictMode>
-      <App />
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </StateProvider>
   </React.StrictMode>
 )
 
