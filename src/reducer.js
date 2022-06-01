@@ -1,5 +1,6 @@
 export const initialState = {
     basket: [],     //empty array - initial
+    user: null          //começa assim nulo
 }
 
 //Selector
@@ -22,21 +23,26 @@ const reducer = (state, action) => {     //state como esta a aplicaçao e action
             const index = state.basket.findIndex((basketItem) => 
             basketItem.item === action.id
         )
-        let newBasket = [...state.basket]
+            let newBasket = [...state.basket]
 
-        if (index >= 0) {
-            newBasket.splice(index, 1)
-        } else {
-            console.warn(
-                `Can't remove product (id: ${action.id} as it's not in basket!)`
-            )
+            if (index >= 0) {
+                newBasket.splice(index, 1)
+            } else {
+                console.warn(
+                    `Can't remove product (id: ${action.id} as it's not in basket!)`
+                )
 
-        }
-            return {
-                ...state, 
-                basket: newBasket
             }
+                return {
+                    ...state, 
+                    basket: newBasket
+                };
 
+        case 'SET_USER': 
+            return {
+                ...state,
+                user: action.user
+            };
 
         
         default: 

@@ -1,12 +1,20 @@
 import React from 'react'
 import '../styles/Header.css'
-import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import SearchIcon from '@mui/icons-material/Search'
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import { Link } from 'react-router-dom'
-import { useStateValue } from './StateProvider';
+import { useStateValue } from './StateProvider'
+import { auth } from '../firebase'
 
 const Header = () => {
-    const [{ basket }, dispatch] = useStateValue();
+    const [{ basket, user }, dispatch] = useStateValue();
+
+    const handleAuthentication = () => {
+        if(user){
+            auth.signOut()
+        }
+    }
+
 
   return (
     <div className='header'>
@@ -14,14 +22,14 @@ const Header = () => {
         <img  className='header__logo' src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="logo" />
         </Link>
         <div className="header__search">
-            <input className='header__searchInput' type='text'/>
+            <input className='header__searchInput' type='text' placeholder='This site is a clone, it´s fake, created only for study!'/>
             <SearchIcon className='header__searchIcon'/>
         </div>
         <div className="header__nav">
-            <Link to='/login'> 
-                <div className="header__option header__responsive">
+            <Link to={!user && '/login'}> 
+                <div onClick={handleAuthentication} className="header__option header__responsive">
                     <span className='header__optionLineOne'>Hello Guest</span>
-                    <span className='header__optionLineTwo'>Sign in</span>
+                    <span className='header__optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
                 </div>
             </Link>
             <div className="header__option">
