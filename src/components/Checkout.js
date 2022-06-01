@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/Checkout.css'
+import Header from './Header';
 import CheckoutProduct from './CheckoutProduct';
 import Subtotal from './Subtotal'
 import { useStateValue } from './StateProvider';
@@ -9,6 +10,8 @@ const Checkout = () => {
   const [{ basket }, dispatch] = useStateValue();
 
   return (
+    <>
+      <Header/>
     <div className='checkout'>
       <div className="checkout__left">
         <img className='checkout__ad'  
@@ -32,6 +35,7 @@ const Checkout = () => {
         <Subtotal/>
       </div>
     </div>
+    </>
   )
 }
 

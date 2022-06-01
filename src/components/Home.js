@@ -1,10 +1,13 @@
 import React from "react";
 import "../styles/Home.css";
 import Product from "./Product";
+import Header from "./Header";
 
 
 const Home = () => {
   return (
+    <>
+    <Header/>
     <div className="home">
       <div className="home__container">
         <img
@@ -62,6 +65,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
