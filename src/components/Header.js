@@ -11,10 +11,9 @@ const Header = () => {
 
     const handleAuthentication = () => {
         if(user){
-            auth.signOut()
+            auth.signOut();
         }
     }
-
 
   return (
     <div className='header'>
